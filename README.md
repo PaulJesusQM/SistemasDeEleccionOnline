@@ -23,7 +23,7 @@ La presente propuesta tiene como objetivo el desarrollo de un sistema de votaci�
 Desde la perspectiva del proyecto, se presenta un sistema de votación en línea específicamente diseñado para servir los intereses de cualquier organización que requiera un proceso electoral. A través de sus características y funcionalidades, se busca proporcionar una experiencia segura y eficiente para sus usuarios.
 
 ### Diagrama de Casos de Uso y Prototipo
-![Diagrama de Casos de Uso](https://github.com/PaulJesusQM/SistemasDeEleccionOnline/issues/1#issue-2417612025)
+![Diagrama de Casos de Uso]https://github.com/PaulJesusQM/SistemasDeEleccionOnline/issues/1#issue-2417612025
 Figura 1. Diagrama de Casos de Uso
 
 #### Tipo de Usuario: Administrador
