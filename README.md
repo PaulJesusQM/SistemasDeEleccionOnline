@@ -21,7 +21,7 @@ La presente propuesta tiene como objetivo el desarrollo de un sistema de votaci�
 
 ## Funcionalidades
 Desde la perspectiva del proyecto, se presenta un sistema de votación en línea específicamente diseñado para servir los intereses de cualquier organización que requiera un proceso electoral. A través de sus características y funcionalidades, se busca proporcionar una experiencia segura y eficiente para sus usuarios.
-!(https://github.com/Diegodaz/Recursos/blob/86ac4c53572f80870dc4da14937a69a203f592cc/1.jpeg)
+
 ### Diagrama de Casos de Uso y Prototipo
 ![Diagrama de Casos de Uso](https://github.com/PaulJesusQM/SistemasDeEleccionOnline/issues/1#issue-2417612025)
 Figura 1. Diagrama de Casos de Uso
