@@ -1,2 +1,4 @@
-Flask==2.2.2
-Flask-sqlalchemy
+Flask
+Flask-SQLAlchemy
+Flask-Migrate
+python-dotenv
