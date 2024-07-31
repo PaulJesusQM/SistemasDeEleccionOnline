@@ -1,17 +1,14 @@
-from domain.entities.usuario import Usuario
-from domain.repositories.usuario_repository import UsuarioRepository
+from app.domain.entities.usuario import Usuario
+from app.domain.repositories.usuario_repository import UsuarioRepository
 
 class UsuarioService:
-    def __init__(self):
-        self.usuario_repository = UsuarioRepository()
+    def __init__(self, repository: UsuarioRepository):
+        self.repository = repository
 
-    def create_usuario(self, data):
-        usuario = Usuario(
-            username=data['username'],
-            email=data['email'],
-            password=data['password']
-        )
-        return self.usuario_repository.save(usuario)
+    def create_usuario(self, data: dict) -> Usuario:
+        usuario = Usuario(**data)
+        self.repository.save(usuario)
+        return usuario
 
-    def get_usuario(self, usuario_id):
-        return self.usuario_repository.find_by_id(usuario_id)
+    def get_usuario(self, usuario_id: int) -> Usuario:
+        return self.repository.find_by_id(usuario_id)
