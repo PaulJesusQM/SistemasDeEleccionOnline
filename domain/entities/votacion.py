@@ -2,10 +2,9 @@ from app import db
 
 class Votacion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    titulo = db.Column(db.String(120), nullable=False)
-    descripcion = db.Column(db.String(250), nullable=False)
-    fecha_inicio = db.Column(db.DateTime, nullable=False)
-    fecha_fin = db.Column(db.DateTime, nullable=False)
+    nombre = db.Column(db.String(50), nullable=False)
+    fecha_inicio = db.Column(db.Date, nullable=False)
+    fecha_fin = db.Column(db.Date, nullable=False)
 
     def __repr__(self):
-        return f'<Votacion {self.titulo}>'
+        return f'<Votacion {self.nombre}>'

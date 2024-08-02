@@ -1,11 +1,9 @@
 from app import db
-from domain.entities.votacion import Votacion
+from app.domain.entities.votacion import Votacion
 
 class VotacionRepository:
-    def save(self, votacion):
-        db.session.add(votacion)
-        db.session.commit()
-        return votacion
+    def get_all(self):
+        return Votacion.query.all()
 
-    def find_by_id(self, votacion_id):
-        return Votacion.query.get(votacion_id)
+    def get_by_id(self, id):
+        return Votacion.query.get(id)

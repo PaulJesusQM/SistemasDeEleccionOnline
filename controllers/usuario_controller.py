@@ -1,27 +1,19 @@
 from flask import Blueprint, request, jsonify
+from app import db
+from app.domain.entities.usuario import Usuario
 from app.domain.services.usuario_service import UsuarioService
-from app.domain.repositories.usuario_repository import UsuarioRepository
 
-usuario_bp = Blueprint('usuario_bp', __name__)
-usuario_repository = UsuarioRepository()
-usuario_service = UsuarioService(usuario_repository)
+usuario_controller = Blueprint('usuario_controller', __name__)
+usuario_service = UsuarioService()
 
-@usuario_bp.route('/usuarios', methods=['POST'])
-def create_usuario():
-    data = request.json
-    try:
-        usuario = usuario_service.create_usuario(data)
-        return jsonify(usuario.serialize()), 201
-    except DatabaseError as e:
-        return jsonify({"error": str(e)}), 400
+@usuario_controller.route('/usuarios', methods=['GET'])
+def get_usuarios():
+    usuarios = usuario_service.get_all_usuarios()
+    return jsonify([usuario.to_dict() for usuario in usuarios])
 
-@usuario_bp.route('/usuarios/<int:usuario_id>', methods=['GET'])
-def get_usuario(usuario_id):
-    try:
-        usuario = usuario_service.get_usuario(usuario_id)
-        if usuario:
-            return jsonify(usuario.serialize()), 200
-        else:
-            return jsonify({"error": "Usuario no encontrado"}), 404
-    except DatabaseError as e:
-        return jsonify({"error": str(e)}), 400
+@usuario_controller.route('/usuarios/<int:id>', methods=['GET'])
+def get_usuario(id):
+    usuario = usuario_service.get_usuario_by_id(id)
+    if usuario is None:
+        return jsonify({'error': 'Usuario no encontrado'}), 404
+    return jsonify(usuario.to_dict())
