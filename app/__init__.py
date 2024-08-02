@@ -1,14 +1,10 @@
+# app/__init__.py
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 
-db = SQLAlchemy()
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+db = SQLAlchemy(app)
 
-def create_app():
-    app = Flask(__name__)
-    app.config.from_object('config.Config')
-    db.init_app(app)
-    Migrate(app, db)
-    with app.app_context():
-        from app import routes
-        return app
+from . import routes, models
+

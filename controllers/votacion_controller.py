@@ -1,14 +1,17 @@
-from flask import render_template
-from domain.services.votacion_service import VotacionService
+from flask import Blueprint, request, jsonify
+from app.domain.services.votacion_service import VotacionService
 
+votacion_controller = Blueprint('votacion_controller', __name__)
 votacion_service = VotacionService()
 
-def list_votaciones():
+@votacion_controller.route('/votaciones', methods=['GET'])
+def get_votaciones():
     votaciones = votacion_service.get_all_votaciones()
-    return render_template('votacion/list.html', votaciones=votaciones)
+    return jsonify([votacion.to_dict() for votacion in votaciones])
 
-def detail_votacion(votacion_id):
-    votacion = votacion_service.get_votacion(votacion_id)
-    if votacion:
-        return render_template('votacion/detail.html', votacion=votacion)
-    return render_template('404.html'), 404
+@votacion_controller.route('/votaciones/<int:id>', methods=['GET'])
+def get_votacion(id):
+    votacion = votacion_service.get_votacion_by_id(id)
+    if votacion is None:
+        return jsonify({'error': 'Votación no encontrada'}), 404
+    return jsonify(votacion.to_dict())

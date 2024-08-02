@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de la Elección</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:300|Open+Sans:400');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(to left, #76b852, #8DC26F);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .election-detail {
+            background-color: #FFFFFF;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .election-detail h1 {
+            font-size: 36px;
+            color: #003366;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .option-card:hover {
+            background-color: #e6e6e6;
+        }
+
+        .option-card input[type="radio"] {
+            margin-left: auto;
+        }
+
+        #btn-vote {
+            margin-top: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #642a73;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #btn-vote:hover {
+            background-color: #4a1d5d;
+        }
+    </style>
+</head>
+<body>
+    <div class="election-detail">
+        <h1>{{ eleccion.nombre }}</h1>
+        <form method="POST" action="{{ url_for('votar', id=eleccion.id) }}">
+            <div class="options">
+                {% for candidato in eleccion.candidatos %}
+                <div class="option-card">
+                    <input type="radio" id="candidato{{ candidato.id }}" name="candidato" value="{{ candidato.id }}" required>
+                    <label for="candidato{{ candidato.id }}" class="party-name">{{ candidato.nombre }}</label>
+                </div>
+                {% endfor %}
+            </div>
+            <button id="btn-vote" type="submit">Votar</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/detail.js') }}" type="module"></script>
+</body>
+</html>

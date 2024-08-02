@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:300|Open+Sans:400');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', sans-serif; background: linear-gradient(to left, #76b852, #8DC26F); display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .register-section { background-color: #FFFFFF; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .register-section h1 { font-size: 36px; color: #003366; margin-bottom: 20px; }
+        .register-form { width: 100%; }
+        .register-form label { display: block; margin-bottom: 5px; font-size: 16px; text-align: left; }
+        .register-form input { width: calc(100% - 20px); padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
+        .register-form button { width: 100%; padding: 10px; border: none; border-radius: 5px; background-color: #642a73; color: #fff; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease; }
+        .register-form button:hover { background-color: #4a1d5d; }
+    </style>
+</head>
+<body>
+    <div class="register-section">
+        <h1>Crear una cuenta</h1>
+        <form class="register-form" method="POST" action="{{ url_for('register') }}">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre de usuario" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+            
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" placeholder="Contraseña" required minlength="7">
+            
+            <label for="password-confirm">Confirmar contraseña:</label>
+            <input type="password" id="password-confirm" name="password-confirm" placeholder="Confirmar contraseña" required minlength="7">
+            
+            <button type="submit">Registrarse</button>
+        </form>
+    </div>
+    <script src="assets/js/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js" type="module"></script>
+</body>
+</html>
